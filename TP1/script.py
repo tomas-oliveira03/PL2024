@@ -1,5 +1,3 @@
-
-
 modalidades = set()
 cont = 0
 aptos = 0
@@ -44,4 +42,3 @@ for i in range(0, idade_maxima+1, 5):
         atletas_escalao += idades.get(f, 0)
     if atletas_escalao > 0:
         print(f"   [{i}-{i+4}]: {atletas_escalao}")
-
