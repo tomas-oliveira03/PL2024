@@ -45,5 +45,5 @@ for i in range(0, idade_maxima+1, 5):
     for f in range(i, i+5):
         atletas_escalao += idades.get(f, 0)
     if atletas_escalao > 0:
-        print(f"   [{i}-{i+4}]: {atletas_escalao}")
+        print(f"   [{i}-{i+4}]: {atletas_escalao} ({'{:.2f}'.format((atletas_escalao/cont)*100)}%)")
 
