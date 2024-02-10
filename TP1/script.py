@@ -1,4 +1,8 @@
 import sys
+import io
+
+# Para garantir que não existem desformatações de texto
+sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
 
 modalidades = set()
 cont = 0
