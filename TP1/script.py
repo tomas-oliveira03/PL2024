@@ -1,29 +1,29 @@
+import sys
+
 modalidades = set()
 cont = 0
 aptos = 0
 idades = {}
 
-with open("emd.csv", encoding="utf-8") as file:
+for line in sys.stdin:
+    if cont != 0:
+        colunas = line.split(",")
+        modalidade = colunas[8]
+        apto = colunas[12]
+        idade = int(colunas[5])
 
-    for line in file:
-        if cont != 0:
-            colunas = line.split(",")
-            modalidade = colunas[8]
-            apto = colunas[12]
-            idade = int(colunas[5])
+        modalidades.add(modalidade)
 
-            modalidades.add(modalidade)
+        if idade in idades:
+            current_idade = idades[idade]
+            idades[idade] = current_idade + 1
+        else:
+            idades[idade] = 1
 
-            if idade in idades:
-                current_idade = idades[idade]
-                idades[idade] = current_idade + 1
-            else:
-                idades[idade] = 1
+        if apto == "true\n":
+            aptos += 1
 
-            if apto == "true\n":
-                aptos += 1
-
-        cont += 1
+    cont += 1
 
 cont -= 1
 
@@ -42,3 +42,4 @@ for i in range(0, idade_maxima+1, 5):
         atletas_escalao += idades.get(f, 0)
     if atletas_escalao > 0:
         print(f"   [{i}-{i+4}]: {atletas_escalao}")
+
