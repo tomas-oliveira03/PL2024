@@ -32,7 +32,9 @@ for line in sys.stdin:
 cont -= 1
 
 modalidades = sorted(modalidades)
-print(f"Modalidades: {modalidades}")
+print("\n\nModalidades:")
+for modalidade in modalidades:
+    print(f"  -{modalidade}")
 print("------------------")
 print(f"Atletas aptos: {'{:.2f}'.format((aptos/cont)*100)}%")
 print(f"Atletas inaptos: {'{:.2f}'.format(((cont-aptos)/cont)*100)}%")
