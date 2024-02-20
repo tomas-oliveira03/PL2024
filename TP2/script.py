@@ -16,8 +16,24 @@ def converter(htmlBody):
     # ITALICO
     htmlBody = re.sub(r'\*([^\*]*)\*', r'<i>\1</i>', htmlBody)
 
+    # BLOCKQUOTE
+    htmlBody = re.sub(r'^\s*>\s*(.+)$', r'<blockquote>\1</blockquote>', htmlBody, flags=re.MULTILINE)
+
     # LISTA NUMERADA
     htmlBody = re.sub(r'^\s*\d+\.\s+(.+)$', r'<li>\1</li>', htmlBody, flags=re.MULTILINE)
+    htmlBody = re.sub(r'((<li>.*</li>\n)+)', r'<ol>\n\1</ol>\n', htmlBody, flags=re.MULTILINE)
+
+    # LISTA NÃO NUMERADA
+    htmlBody = re.sub(r'^\s*-\s+(.+)$', r'<lo>\1</lo>', htmlBody, flags=re.MULTILINE)
+    htmlBody = re.sub(r'((<lo>.*</lo>\n)+)', r'<ul>\n\1</ul>\n', htmlBody, flags=re.MULTILINE)
+    htmlBody = re.sub(r'<lo>', r'<li>', htmlBody)
+    htmlBody = re.sub(r'</lo>', r'</li>', htmlBody)
+
+    # CODE
+    htmlBody = re.sub(r'`(.*)`', r'<code>\1</code>', htmlBody)
+
+    # HORIZONTAL RULE
+    htmlBody = re.sub(r'^\s*---\s*$', r'<hr>', htmlBody, flags=re.MULTILINE)
 
     # IMAGEM
     htmlBody = re.sub(r'!\[([^\]]*)\]\(([^\)]*)\)', r'<img src="\2" alt="\1"/>', htmlBody)
@@ -25,28 +41,11 @@ def converter(htmlBody):
     # LINK
     htmlBody = re.sub(r'\[([^\]]*)\]\(([^\)]*)\)', r'<a href="\2">\1</a>', htmlBody)
 
-    isFirst = True
-    hasStarted = False
-    finalText = ""
-    # Check list
-    for line in htmlBody.splitlines():
-        if line.startswith("<li>") and isFirst:
-            finalText += "<ol>\n" + line + "\n"
-            isFirst = False
-            hasStarted = True
-        elif hasStarted and not line.startswith("<li>"):
-            finalText += "</ol>\n" + line + "\n"
-            isFirst = True
-            hasStarted = False
-        else:
-            finalText += line + "\n"
-
-    return finalText
+    return htmlBody
 
 
 def main():
-    finalHTMLText = """
-<!DOCTYPE html>
+    finalHTMLText = """<!DOCTYPE html>
 <html lang="pt PT">
 <head>
     <title>Pagina</title>
