@@ -1,4 +1,5 @@
 import re
+import sys
 
 
 def converter(htmlBody):
@@ -44,7 +45,8 @@ def converter(htmlBody):
     return htmlBody
 
 
-def main():
+def main(args):
+
     finalHTMLText = """<!DOCTYPE html>
 <html lang="pt PT">
 <head>
@@ -56,7 +58,7 @@ def main():
 
 """
 
-    with open("inputFile.md") as file:
+    with open(args[1]) as file:
         finalHTMLText += converter(file.read())
 
     finalHTMLText += "\n\n</body>"
@@ -66,4 +68,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv)
