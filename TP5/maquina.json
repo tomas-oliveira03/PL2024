@@ -1,0 +1,34 @@
+{
+  "stock": [
+    {
+      "cod": "A01",
+      "nome": "bolachas",
+      "preco": 0.7,
+      "quant": 5
+    },
+    {
+      "cod": "A02",
+      "nome": "corissant",
+      "preco": 3.5,
+      "quant": 2
+    },
+    {
+      "cod": "A03",
+      "nome": "refrigerantes",
+      "preco": 4.5,
+      "quant": 1
+    },
+    {
+      "cod": "A04",
+      "nome": "chocolates",
+      "preco": 5.5,
+      "quant": 4
+    },
+    {
+      "cod": "A05",
+      "nome": "pão",
+      "preco": 6.5,
+      "quant": 10
+    }
+  ]
+}
