@@ -23,7 +23,7 @@ c = a * b / (a / b)
 ## Resolução:
 
 ```
-Z -> Start '$'
+Z -> Start '$' {'!',var,'?'}
 
 Start -> '?' Exp {'?'}
     |  var '=' Exp {var}
