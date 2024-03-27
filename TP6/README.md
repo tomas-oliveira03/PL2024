@@ -45,6 +45,6 @@ Termo2 -> '*' Termo {'*'}
 
 
 Fator -> '(' Exp ')' {'('}
-    | num {num}
-    | id {id}
+    | number {number}
+    | var {var}
 ```
