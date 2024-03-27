@@ -16,7 +16,7 @@ Garantir a prioridade de operadores, garantir que é LL(1) e calcular look ahead
 ? a
 b = a * 2 / (27 - 3)
 ! a + b
-c = a * b / (a/b)
+c = a * b / (a / b)
 ```
 
 
@@ -25,21 +25,26 @@ c = a * b / (a/b)
 ```
 Z -> Start '$'
 
-Start -> '?' var {'?'}
-    |  var '=' ExpFinal {var}
-    |  '!' ExpFinal {'!'}
+Start -> '?' Exp {'?'}
+    |  var '=' Exp {var}
+    |  '!' Exp {'!'}
 
-ExpFinal -> Exp3 Exp2 Exp1 {var, number, '('}
 
-Exp1 -> '+' ExpFinal {'+'}
-    |  '-' ExpFinal {'-'}
+Exp -> Termo Exp2 {var, number, '('}
+
+Exp2 -> '+' Exp {'+'}
+    |  '-' Exp {'-'}
     |  & {'$', ')'}
 
-Exp2 -> '*' ExpFinal {'*'}
-    |  '/' ExpFinal {'/'}
+
+Termo -> Fator Termo2 {var, number, '('}
+
+Termo2 -> '*' Termo {'*'}
+    |  '/' Termo {'/'}
     |  & {'$', ')'}
 
-Exp3 -> '(' ExpFinal ')' {'('}
-    |  var {var}
-    |  number {number}
+
+Fator -> '(' Exp ')' {'('}
+    | num {num}
+    | id {id}
 ```
